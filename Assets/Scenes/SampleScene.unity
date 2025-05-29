@@ -750,7 +750,8 @@ MonoBehaviour:
   _health: {fileID: 1275875839}
   _text: {fileID: 2010761353}
   _bar: {fileID: 848593247}
-  _smoothBar: {fileID: 817953886}
+  _smoothBar: {fileID: 817953884}
+  _changeSpeed: 0.01
 --- !u!4 &695846587
 Transform:
   m_ObjectHideFlags: 0
@@ -870,7 +871,6 @@ GameObject:
   m_Component:
   - component: {fileID: 817953885}
   - component: {fileID: 817953884}
-  - component: {fileID: 817953886}
   m_Layer: 5
   m_Name: HealthBarSmooth
   m_TagString: Untagged
@@ -950,19 +950,6 @@ RectTransform:
   m_AnchoredPosition: {x: 264.78003, y: -388.41}
   m_SizeDelta: {x: 413.56, y: 144.85101}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &817953886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 817953883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3a0bdd9ddd7f147ab73a981a2f0e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _changeSpeed: 0.01
 --- !u!1 &821706451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,11 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62c2e795085ffe4e844080a02fe667b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _takeDamageButton: {fileID: 2110215532}
-  _healButton: {fileID: 1786126940}
-  _maxHealth: 100
-  _damage: 20
-  _heal: 10
+  _maxCount: 100
 --- !u!4 &1275875840
 Transform:
   m_ObjectHideFlags: 0
@@ -1348,6 +1331,7 @@ GameObject:
   - component: {fileID: 1786126942}
   - component: {fileID: 1786126941}
   - component: {fileID: 1786126940}
+  - component: {fileID: 1786126943}
   m_Layer: 5
   m_Name: ButtonHeal
   m_TagString: Untagged
@@ -1457,6 +1441,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786126938}
   m_CullTransparentMesh: 1
+--- !u!114 &1786126943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786126938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 525b52998b9810247934c177c9ef67ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 1275875839}
+  _count: 10
 --- !u!1 &1967122069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1676,7 @@ GameObject:
   - component: {fileID: 2110215534}
   - component: {fileID: 2110215533}
   - component: {fileID: 2110215532}
+  - component: {fileID: 2110215535}
   m_Layer: 5
   m_Name: ButtonTakeDamage
   m_TagString: Untagged
@@ -1787,6 +1786,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110215530}
   m_CullTransparentMesh: 1
+--- !u!114 &2110215535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110215530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783dc5db77e15324d832debd0378012a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: {fileID: 1275875839}
+  _count: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
