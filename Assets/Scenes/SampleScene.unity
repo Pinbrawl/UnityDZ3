@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74497b0ac5b0d634c8030f2b26026902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cube: {fileID: 7547147232048724036, guid: 6dbb15fb1d69b214dad4bd6bb07790f3, type: 3}
+  _obj: {fileID: 7547147232048724036, guid: 6dbb15fb1d69b214dad4bd6bb07790f3, type: 3}
   _poolCapacity: 5
   _poolMaxSize: 10
   _interval: 1
@@ -1461,10 +1461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dff8ae061e35904c8e518f3d6fbf76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bomb: {fileID: 5465906868065547664, guid: b45eb183e585977448ff87b9b45eaf4a, type: 3}
-  _cubeSpawner: {fileID: 296975609}
+  _obj: {fileID: 5465906868065547664, guid: b45eb183e585977448ff87b9b45eaf4a, type: 3}
   _poolCapacity: 5
   _poolMaxSize: 10
+  _cubeSpawner: {fileID: 296975609}
 --- !u!4 &1558764596
 Transform:
   m_ObjectHideFlags: 0
