@@ -8,7 +8,7 @@ public class CubeSpawner : Spawner<Cube>
 
     public event Action<Vector3> Releasing;
 
-    private void Awake()
+    private void Start()
     {
         StartCoroutine(SpawnCubes());
     }

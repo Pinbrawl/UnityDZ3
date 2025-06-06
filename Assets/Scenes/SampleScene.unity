@@ -983,6 +983,7 @@ GameObject:
   - component: {fileID: 844227568}
   - component: {fileID: 844227567}
   - component: {fileID: 844227566}
+  - component: {fileID: 844227570}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Plane
@@ -1077,6 +1078,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -20.078, y: 28.565, z: 5.565}
+--- !u!114 &844227570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844227565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d32fc7e88b70042a199a674ce9ab95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,6 +1824,7 @@ GameObject:
   - component: {fileID: 2032325709}
   - component: {fileID: 2032325708}
   - component: {fileID: 2032325707}
+  - component: {fileID: 2032325711}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Plane
@@ -1905,6 +1919,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -12.226, y: 16.323, z: -42.515}
+--- !u!114 &2032325711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032325706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d32fc7e88b70042a199a674ce9ab95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2060990545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,6 +2077,7 @@ GameObject:
   - component: {fileID: 2135502125}
   - component: {fileID: 2135502124}
   - component: {fileID: 2135502123}
+  - component: {fileID: 2135502127}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Plane
@@ -2145,6 +2172,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2135502127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135502122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d32fc7e88b70042a199a674ce9ab95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

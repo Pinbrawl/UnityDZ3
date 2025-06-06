@@ -10,17 +10,14 @@ public class InformationViewer : MonoBehaviour
     [SerializeField] private TMP_Text _activeText;
     [SerializeField] private string _baseActiveMessage;
 
-    private int _spawnedCount = 0;
-    private int _InstantiateCount = 0;
-
-    protected void PrintSpawned()
+    protected void PrintSpawned(int count)
     {
-        _spawnedText.text = _baseSpawnedMessage + ": " + ++_spawnedCount;
+        _spawnedText.text = _baseSpawnedMessage + ": " + count;
     }
 
-    protected void PrintInstantiated()
+    protected void PrintInstantiated(int count)
     {
-        _instantiateText.text = _baseInstantiateMessage + ": " + ++_InstantiateCount;
+        _instantiateText.text = _baseInstantiateMessage + ": " + count;
     }
 
     protected void PrintActive(int count)

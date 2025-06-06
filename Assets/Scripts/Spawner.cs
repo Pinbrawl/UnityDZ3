@@ -10,8 +10,11 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
 
     protected ObjectPool<T> _pool;
 
-    public event Action Spawned;
-    public event Action Instantiated;
+    private int _spawnedCount;
+    private int _InstantiatedCount;
+
+    public event Action<int> Spawned;
+    public event Action<int> Instantiated;
     public event Action<int> ActiveCountChanged;
 
     private void Awake()
@@ -24,12 +27,15 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
             maxSize: _poolMaxSize);
+
+        _spawnedCount = 0;
+        _InstantiatedCount = 0;
     }
 
     protected virtual T InstantiateObj()
     {
         T obj = Instantiate(_obj);
-        Instantiated?.Invoke();
+        Instantiated?.Invoke(++_InstantiatedCount);
 
         return obj;
     }
@@ -60,6 +66,6 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
         T obj = _pool.Get();
         obj.transform.position = position;
 
-        Spawned?.Invoke();
+        Spawned?.Invoke(++_spawnedCount);
     }
 }

@@ -8,7 +8,6 @@ public class Cube : MonoBehaviour
     [SerializeField] private float _maxLifeTime;
 
     private MeshRenderer _render;
-    private string _planeTag = "Plane";
     private Coroutine _coroutine;
     private bool _touched;
 
@@ -23,7 +22,7 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == _planeTag)
+        if(collision.gameObject.TryGetComponent<Plane>(out _))
         {
             if(_touched == false)
             {
