@@ -1,25 +1,24 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
-    [SerializeField] private T _obj;
+    [SerializeField] private Enemy _object;
+    [SerializeField] private List<Transform> _points;
     [SerializeField] private int _poolCapacity;
     [SerializeField] private int _poolMaxSize;
+    [SerializeField] private int _maxObjects;
+    [SerializeField] private int _interval;
 
-    protected ObjectPool<T> _pool;
-
-    private int _spawnedCount;
-    private int _InstantiatedCount;
-
-    public event Action<int> Spawned;
-    public event Action<int> Instantiated;
-    public event Action<int> ActiveCountChanged;
+    private List<bool> _occupiedPoints;
+    private ObjectPool<Enemy> _pool;
+    private int _objects;
 
     private void Awake()
     {
-        _pool = new ObjectPool<T>(
+        _pool = new ObjectPool<Enemy>(
             createFunc: () => InstantiateObj(),
             actionOnGet: (obj) => ActionOnGet(obj),
             actionOnRelease: (obj) => ActionOnRelease(obj),
@@ -28,44 +27,67 @@ public class Spawner<T> : MonoBehaviour where T : MonoBehaviour
             defaultCapacity: _poolCapacity,
             maxSize: _poolMaxSize);
 
-        _spawnedCount = 0;
-        _InstantiatedCount = 0;
+        _occupiedPoints = new List<bool>();
+
+        for (int i = 0; i < _points.Count; i++)
+            _occupiedPoints.Add(false);
+
+        StartCoroutine(Spawn());
     }
 
-    protected virtual T InstantiateObj()
+    private Enemy InstantiateObj()
     {
-        T obj = Instantiate(_obj);
-        Instantiated?.Invoke(++_InstantiatedCount);
+        Enemy enemy = Instantiate(_object);
+        enemy.Died += ActionOnRelease;
 
-        return obj;
+        return enemy;
     }
 
-    protected virtual void DestroyObj(T obj)
+    private void ActionOnGet(Enemy obj)
     {
+        obj.gameObject.SetActive(true);
+
+        System.Random random = new System.Random();
+
+        int randomNumber = random.Next(_points.Count);
+
+        while (_occupiedPoints[randomNumber] == true)
+            randomNumber = random.Next(_points.Count);
+
+        obj.transform.position = _points[randomNumber].transform.position;
+        _occupiedPoints[randomNumber] = true;
+
+        _objects++;
+    }
+
+    private void ActionOnRelease(Enemy obj)
+    {
+        obj.gameObject.SetActive(false);
+        _objects--;
+    }
+
+    private void DestroyObj(Enemy obj)
+    {
+        obj.Died -= ActionOnRelease;
         Destroy(obj);
     }
 
-    private void ActionOnGet(T obj)
+    private IEnumerator Spawn()
     {
-        obj.transform.rotation = Quaternion.Euler(0, 0, 0);
-        obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        obj.gameObject.SetActive(true);
+        var interval = new WaitForSecondsRealtime(_interval);
 
-        ActiveCountChanged?.Invoke(_pool.CountActive);
-    }
+        while(enabled)
+        {
+            if(_objects < _maxObjects)
+            {
+                yield return interval;
 
-    protected virtual void ActionOnRelease(T obj)
-    {
-        obj.gameObject.SetActive(false);
-
-        ActiveCountChanged?.Invoke(_pool.CountActive);
-    }
-
-    protected void Spawn(Vector3 position)
-    {
-        T obj = _pool.Get();
-        obj.transform.position = position;
-
-        Spawned?.Invoke(++_spawnedCount);
+                _pool.Get();
+            }
+            else
+            {
+                yield return null;
+            }
+        }
     }
 }
