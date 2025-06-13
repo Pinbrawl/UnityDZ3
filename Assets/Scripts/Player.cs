@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _input;
     [SerializeField] private Gun _gun;
+    [SerializeField] private Health _health;
     [SerializeField] private float _jumpForce;
     [SerializeField] private int _maxAngle;
     [SerializeField] private int _maxVelocity;
@@ -21,12 +22,14 @@ public class Player : MonoBehaviour
     {
         _input.JumpKeyDown += Jump;
         _input.ShootKeyDown += Shoot;
+        _health.Died += Die;
     }
 
     private void OnDisable()
     {
         _input.JumpKeyDown -= Jump;
         _input.ShootKeyDown -= Shoot;
+        _health.Died -= Die;
     }
 
     private void Update()
@@ -47,5 +50,11 @@ public class Player : MonoBehaviour
     private void Shoot()
     {
         _gun.Shoot();
+    }
+
+    private void Die()
+    {
+        Destroy(_gun.gameObject);
+        Destroy(gameObject);
     }
 }

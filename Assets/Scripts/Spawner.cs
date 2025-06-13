@@ -62,6 +62,14 @@ public class Spawner : MonoBehaviour
 
     private void ActionOnRelease(Enemy obj)
     {
+        for(int i = 0; i < _points.Count; i++)
+        {
+            if(obj.transform.position == _points[i].transform.position)
+            {
+                _occupiedPoints[i] = false;
+            }
+        }
+
         obj.gameObject.SetActive(false);
         _objects--;
     }
