@@ -6,11 +6,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private int _damage;
 
-    private void Awake()
-    {
-        StartCoroutine(Move());
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Health>(out Health health))
@@ -20,16 +15,16 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private IEnumerator Move()
+    private void Update()
     {
-        while(enabled)
-        {
-            if(transform.rotation.y == 0)
-                transform.position += Vector3.right * Time.deltaTime * _speed;
-            else
-                transform.position += Vector3.left * Time.deltaTime * _speed;
+        Move();
+    }
 
-            yield return null;
-        }
+    private void Move()
+    {
+        if (transform.rotation.eulerAngles.y == 0)
+            transform.position += Vector3.right * Time.deltaTime * _speed;
+        else
+            transform.position += Vector3.left * Time.deltaTime * _speed;
     }
 }

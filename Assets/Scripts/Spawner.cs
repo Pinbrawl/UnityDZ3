@@ -45,19 +45,31 @@ public class Spawner : MonoBehaviour
 
     private void ActionOnGet(Enemy obj)
     {
-        obj.gameObject.SetActive(true);
+        bool havePoints = false;
 
-        System.Random random = new System.Random();
+        foreach(bool point in _occupiedPoints)
+        {
+            if(point == false)
+            {
+                havePoints = true;
+                break;
+            }
+        }
 
-        int randomNumber = random.Next(_points.Count);
+        if (havePoints == true)
+        {
+            obj.gameObject.SetActive(true);
 
-        while (_occupiedPoints[randomNumber] == true)
-            randomNumber = random.Next(_points.Count);
+            int randomNumber = Random.Range(0, _points.Count);
 
-        obj.transform.position = _points[randomNumber].transform.position;
-        _occupiedPoints[randomNumber] = true;
+            while (_occupiedPoints[randomNumber] == true)
+                randomNumber = Random.Range(0, _points.Count);
 
-        _objects++;
+            obj.transform.position = _points[randomNumber].transform.position;
+            _occupiedPoints[randomNumber] = true;
+
+            _objects++;
+        }
     }
 
     private void ActionOnRelease(Enemy obj)
@@ -77,7 +89,7 @@ public class Spawner : MonoBehaviour
     private void DestroyObj(Enemy obj)
     {
         obj.Died -= ActionOnRelease;
-        Destroy(obj);
+        Destroy(obj.gameObject);
     }
 
     private IEnumerator Spawn()

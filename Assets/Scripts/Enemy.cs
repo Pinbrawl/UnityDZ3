@@ -39,6 +39,6 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Died?.Invoke(gameObject.GetComponent<Enemy>());
+        Died?.Invoke(this);
     }
 }
